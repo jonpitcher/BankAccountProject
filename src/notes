@@ -1,0 +1,126 @@
+// // notes
+
+// // variables with child and parent class
+
+// // // Parent class (Superclass)
+// // public class Animal {
+// //     protected String name; // Common variable for all animals
+
+// //     public Animal(String name) {
+// //         this.name = name;
+// //     }
+
+// //     // Getter and setter methods for 'name'
+// //     public String getName() {
+// //         return name;
+// //     }
+
+// //     public void setName(String name) {
+// //         this.name = name;
+// //     }
+// // }
+
+// // // Child class (Subclass)
+// // public class Dog extends Animal {
+// //     private String breed; // Additional variable specific to Dog
+
+// //     public Dog(String name, String breed) {
+// //         super(name);
+// //         this.breed = breed;
+// //     }
+
+// //     // Getter and setter methods for 'breed'
+// //     public String getBreed() {
+// //         return breed;
+// //     }
+
+// //     public void setBreed(String breed) {
+// //         this.breed = breed;
+// //     }
+// // }
+
+
+
+
+// explainerror message in java with example
+
+// Implicit super constructor Account() is undefined for default constructor. Must define an explicit constructor
+// ChatGPT
+
+// The error message "Implicit super constructor Account() is undefined for default constructor. Must define an explicit constructor" in Java occurs when you attempt to create an instance of a subclass, but the superclass doesn't have a default (parameterless) constructor, and the subclass doesn't explicitly call any existing constructor of the superclass using the super() keyword or provide its own constructor.
+
+// This issue happens because when you create an object of a subclass, the first thing that happens is that the constructor of the superclass is implicitly called (before the constructor of the subclass is executed). If the superclass doesn't have a default constructor, the compiler doesn't know which constructor to call implicitly, and it requires you to explicitly specify the constructor to use.
+
+// Let's see an example to understand this better:
+
+// java
+// Copy code
+// class Account {
+//     private double balance;
+
+//     public Account(double balance) {
+//         this.balance = balance;
+//     }
+
+//     public double getBalance() {
+//         return balance;
+//     }
+// }
+
+// class SavingsAccount extends Account {
+//     // No explicit constructor in SavingsAccount
+
+//     // Other methods specific to SavingsAccount (not shown in this example)
+// }
+
+// public class Main {
+//     public static void main(String[] args) {
+//         SavingsAccount savingsAccount = new SavingsAccount(); // Error here
+//         System.out.println("Balance: " + savingsAccount.getBalance());
+//     }
+// }
+// In this example, we have a superclass Account with a parameterized constructor that initializes the balance variable. Then, we have a subclass SavingsAccount, which extends Account. However, the SavingsAccount class does not have any constructor defined.
+
+// When we attempt to create an instance of SavingsAccount using new SavingsAccount(), the compiler tries to implicitly call the default constructor of Account, which doesn't exist since the Account class has a constructor that takes a double parameter. As a result, the error message is shown, stating that the implicit constructor in SavingsAccount cannot find the default constructor in Account.
+
+// To resolve this issue, you can either provide a default constructor in the Account class or explicitly call one of the constructors of Account from the SavingsAccount class using super().
+
+// Option 1: Add a default constructor in the Account class:
+
+// java
+// Copy code
+// class Account {
+//     private double balance;
+
+//     public Account() {
+//         // Default constructor with balance set to 0.0
+//         this.balance = 0.0;
+//     }
+
+//     // Parameterized constructor (as before)
+//     public Account(double balance) {
+//         this.balance = balance;
+//     }
+
+//     public double getBalance() {
+//         return balance;
+//     }
+// }
+// Option 2: Explicitly call the parameterized constructor from SavingsAccount using super():
+
+// java
+// Copy code
+// class SavingsAccount extends Account {
+//     public SavingsAccount(double balance) {
+//         super(balance);
+//     }
+
+//     // Other methods specific to SavingsAccount (not shown in this example)
+// }
+// Choose the appropriate option based on your requirements, and this will resolve the error.
+
+
+
+
+
+
